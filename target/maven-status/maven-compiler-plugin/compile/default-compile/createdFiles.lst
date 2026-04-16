@@ -1,0 +1,9 @@
+dataHolder/DataStore.class
+com/mycompany/cw_csarchitecture/resources/DiscoveryResource.class
+com/mycompany/cw_csarchitecture/resources/RoomResource.class
+MyApplication.class
+com/mycompany/cw_csarchitecture/resources/SensorReadingResource.class
+com/mycompany/cw_csarchitecture/models/SensorReading.class
+com/mycompany/cw_csarchitecture/models/Sensor.class
+com/mycompany/cw_csarchitecture/resources/SensorResource.class
+com/mycompany/cw_csarchitecture/models/Room.class
