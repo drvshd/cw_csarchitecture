@@ -23,10 +23,10 @@ HATEOAS stands for Hypermedia as the engine of application state. The idea is th
 
 Part 2 - Room Management
 Task 2.1
-
+Both returning an ID alone and the full details are useful in their own ways. If you decide to print ID alone, it will reduce the amount of data that has to be sent, as well as reducing the amount that the client processes. This is good when you want to have faster processes, however it lacks in data. However, returning full details off the same request in theory would be better. For instance, if there was a building with far more rooms, having to do separate requests to get the ID then the name or capacity would be far slower. I decided on using this as it would be more efficient in the long term to returning the list of rooms.
 
 Task 2.2
-
+The delete request is idempotent. First time you sent a delete request, the room will be removed and you will receive a "204 no content" response to show that it passed. Any attempt afterwards wil show "404 not found" because there are simply no rooms with that ID. Therefore if a client accidentally ends up doing the same delete operation, there will be no issues as only the first one will work. This is what idempotency is meant to do, the same operation can be sent multiple times and it'll only run once without causing errors or data corruption.
 
 Part 3 - Sensor Operations & Linking
 Part 3.1
