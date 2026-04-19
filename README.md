@@ -37,10 +37,7 @@ The benefit of query parameters is that they can be used to trim down a collecti
 
 Part 4 - Deep Nesting with Sub - Resources
 Part 4.1
-
-
-Part 4.2
-
+Going by the sub resource locator patter means that every action is seperated into a class. By seperating the classes, it allows me to change one of the files without the risk of the other getting errors. Although for a small API it may not seem like it is worth it, however for a scaling API it would be more beneficial as the time passes.
 
 Part 5 - Advanced Error Handling, Exception Mapping & Logging
 Part 5.1

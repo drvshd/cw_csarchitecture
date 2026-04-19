@@ -9,9 +9,7 @@ package cw_csarchitecture.resources;
  * @author dervishdenaj t
  */
 import cw_csarchitecture.dataHolder.DataStore;
-import cw_csarchitecture.models.Room;
 import cw_csarchitecture.models.Sensor;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -77,5 +75,10 @@ public class SensorResource {
         DataStore.rooms.get(sensor.getRoomId()).getSensorIds().add(sensor.getId());
 
         return Response.status(Response.Status.CREATED).entity(sensor).build();
+    }
+
+    @Path("/{sensorId}/readings")
+    public SensorReadingResource getReadingResource(@PathParam("sensorId") String sensorId) {
+        return new SensorReadingResource(sensorId);
     }
 }
