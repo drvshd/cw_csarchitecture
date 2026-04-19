@@ -66,10 +66,10 @@ public class SensorRoomResource {
 
         if (room.getSensorIds() != null && room.getSensorIds().size() > 0) {
             return Response.status(Response.Status.CONFLICT)
-                   .entity("{\"error\": \"Cannot delete room. It still has sensors assigned to it.\"}").build();
+                    .entity("{\"error\": \"Cannot delete room. It still has sensors assigned to it.\"}").build();
         }
 
-        DataStore.rooms.remove(roomId);        
+        DataStore.rooms.remove(roomId);
         return Response.noContent().build();
     }
 }

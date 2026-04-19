@@ -30,10 +30,10 @@ The delete request is idempotent. First time you sent a delete request, the room
 
 Part 3 - Sensor Operations & Linking
 Part 3.1
-
+If a client was to send an unsupported format (anything other than an APPLICATION_JSON), JAX-RS would spot it and return a 415 response code. This enforces strict input validation as it'll mean that the client needs to be strictly following the format that needs to be sent.
 
 Part 3.2
-
+The benefit of query parameters is that they can be used to trim down a collection (of rooms and sensors in this scenario). It allows the client to have a look through the list to find the exact object they need. Had I used a method like /sensors/type/(sensorID), a new endpoint would be used for every filter combination, which would slow down the process of looking through the list a lot more. 
 
 Part 4 - Deep Nesting with Sub - Resources
 Part 4.1
