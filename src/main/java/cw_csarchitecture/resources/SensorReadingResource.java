@@ -7,6 +7,7 @@ package cw_csarchitecture.resources;
 import cw_csarchitecture.dataHolder.DataStore;
 import cw_csarchitecture.models.Sensor;
 import cw_csarchitecture.models.SensorReading;
+import cw_csarchitecture.errorExceptions.SensorUnavailableException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +18,7 @@ import java.util.*;
  * @author dervishdenaj
  */
 public class SensorReadingResource {
+
     private String sensorId;
 
     public SensorReadingResource(String sensorId) {
@@ -43,6 +45,9 @@ public class SensorReadingResource {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("{\"error\": \"Sensor not found\"}")
                     .type(MediaType.APPLICATION_JSON).build();
+        }
+        if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
+            throw new SensorUnavailableException("This sensor is undergoing maintenance. Try again another time.");
         }
 
         DataStore.sensorReadings

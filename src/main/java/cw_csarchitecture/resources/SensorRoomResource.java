@@ -6,6 +6,7 @@ package cw_csarchitecture.resources;
 
 import cw_csarchitecture.dataHolder.DataStore;
 import cw_csarchitecture.models.Room;
+import cw_csarchitecture.errorExceptions.RoomNotEmptyException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -64,11 +65,9 @@ public class SensorRoomResource {
                     .entity("{\"error\": \"Room not found\"}").build();
         }
 
-        if (room.getSensorIds() != null && room.getSensorIds().size() > 0) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("{\"error\": \"Cannot delete room. It still has sensors assigned to it.\"}").build();
+        if (room.getSensorIds() != null && room.getSensorIds().size()>0){
+            throw new RoomNotEmptyException("You can't delete this room as it has still has active sensors.");
         }
-
         DataStore.rooms.remove(roomId);
         return Response.noContent().build();
     }

@@ -6,10 +6,11 @@ package cw_csarchitecture.resources;
 
 /**
  *
- * @author dervishdenaj t
+ * @author dervishdenaj
  */
 import cw_csarchitecture.dataHolder.DataStore;
 import cw_csarchitecture.models.Sensor;
+import cw_csarchitecture.errorExceptions.LinkedResourceNotFoundException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -60,9 +61,7 @@ public class SensorResource {
     public Response createSensor(Sensor sensor) {
 
         if (sensor.getRoomId() == null || !DataStore.rooms.containsKey(sensor.getRoomId())) {
-            return Response.status(422)
-                    .entity("{\"error\": \"Room ID does not exist\"}")
-                    .type(MediaType.APPLICATION_JSON).build();
+            throw new LinkedResourceNotFoundException("This room does not exist.");
         }
 
         if (DataStore.sensors.containsKey(sensor.getId())) {
